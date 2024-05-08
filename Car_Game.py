@@ -20,12 +20,12 @@ pygame.display.set_caption('Car Game')
 
 
 
-# road and marker sizes
+# road and marker size
 road_width = 300
 marker_width = 10
 marker_height = 50
 
-# lane coordinates
+# lane coordinate
 left_lane = 150
 center_lane = 250
 right_lane = 350
@@ -39,7 +39,7 @@ right_edge_marker = (395, 0, marker_width, height)
 # for animating movement of the lane markers
 lane_marker_move_y = 0
 
-# player's starting coordinates
+# players starting coordinates
 player_x = 250
 player_y = 400
 
@@ -80,7 +80,7 @@ vehicle_group = pygame.sprite.Group()
 player = PlayerVehicle(player_x, player_y)
 player_group.add(player)
 
-# load the vehicle images
+# load the vehicle images to project 
 image_filenames = ['pickup_truck.png', 'semi_trailer.png', 'taxi.png', 'van.png']
 vehicle_images = []
 for image_filename in image_filenames:
@@ -116,7 +116,7 @@ while running:
                     gameover = True
                     
                     # place the player's car next to other vehicle
-                    # and determine where to position the crash image
+                    
                     if event.key == K_LEFT:
                         player.rect.left = vehicle.rect.right
                         crash_rect.center = [player.rect.left, (player.rect.center[1] + vehicle.rect.center[1]) / 2]
@@ -125,13 +125,13 @@ while running:
                         crash_rect.center = [player.rect.right, (player.rect.center[1] + vehicle.rect.center[1]) / 2]
             
             
-    # draw the grass
+   
     screen.fill(green)
     
-    # draw the road
+    
     pygame.draw.rect(screen, gray, road)
     
-    # draw the edge markers
+    
     pygame.draw.rect(screen, yellow, left_edge_marker)
     pygame.draw.rect(screen, yellow, right_edge_marker)
     
@@ -142,6 +142,8 @@ while running:
     for y in range(marker_height * -2, height, marker_height * 2):
         pygame.draw.rect(screen, white, (left_lane + 45, y + lane_marker_move_y, marker_width, marker_height))
         pygame.draw.rect(screen, white, (center_lane + 45, y + lane_marker_move_y, marker_width, marker_height))
+       
+       
         
     # draw the player's car
     player_group.draw(screen)
@@ -164,6 +166,9 @@ while running:
             image = random.choice(vehicle_images)
             vehicle = Vehicle(image, lane, height / -2)
             vehicle_group.add(vehicle)
+    
+    
+    
     
     # make the vehicles movement
     for vehicle in vehicle_group:
@@ -190,12 +195,14 @@ while running:
     text_rect.center = (50, 400)
     screen.blit(text, text_rect)
     
-    # check if there's a head on collision
+    
+    
+    
     if pygame.sprite.spritecollide(player, vehicle_group, True):
         gameover = True
         crash_rect.center = [player.rect.center[0], player.rect.top]
             
-    # display game over
+    # display gameover
     if gameover:
         screen.blit(crash, crash_rect)
         
@@ -210,6 +217,7 @@ while running:
     pygame.display.update()
 
     # wait for user's input to play again or exit
+    
     while gameover:
         
         clock.tick(fps)
@@ -233,5 +241,8 @@ while running:
                     # exit the loops
                     gameover = False
                     running = False
+                    
+                    
+                    
 
 pygame.quit()
