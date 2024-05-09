@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import random
 
+
 pygame.init()
 
 # colors
@@ -39,7 +40,7 @@ right_edge_marker = (395, 0, marker_width, height)
 # for animating movement of the lane markers
 lane_marker_move_y = 0
 
-# players starting coordinates
+# players starting coordinate
 player_x = 250
 player_y = 400
 
@@ -51,7 +52,7 @@ fps = 120
 gameover = False
 speed = 2
 score = 0
-
+#time to start
 class Vehicle(pygame.sprite.Sprite):
     
     def __init__(self, image, x, y):
