@@ -92,6 +92,25 @@ for image_filename in image_filenames:
 crash = pygame.image.load('images/crash.png')
 crash_rect = crash.get_rect()
 
+
+# Function to display start screen
+def display_start_screen():
+    screen.fill(green)
+    pygame.draw.rect(screen, gray, road)
+    pygame.draw.rect(screen, yellow, left_edge_marker)
+    pygame.draw.rect(screen, yellow, right_edge_marker)
+    pygame.display.update()
+
+    font = pygame.font.Font(pygame.font.get_default_font(), 24)
+    text = font.render('Press ENTER to start or Q to quit', True, white)
+    text_rect = text.get_rect(center=(width/2, height/2))
+    screen.blit(text, text_rect)
+    pygame.display.flip()
+
+# Display the start screen initially
+display_start_screen()
+
+
 # game loop
 running = True
 while running:
